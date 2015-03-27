@@ -34,6 +34,17 @@
             $this->assertEquals(3, $result);
         }
 
+        function test_getBrandName()
+        {
+            $name = "K-Mart";
+            $new_store = new Store($name);
+
+            $result = $new_store->getBrandName();
+
+            $this->assertEquals("K-Mart", $result);
+
+        }
+
 
     }
 

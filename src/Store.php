@@ -21,6 +21,11 @@
             $this->id = $new_id;
         }
 
+        function getBrandName()
+        {
+            return $this->brand_name;
+        }
+
     }
 
 
