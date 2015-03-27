@@ -6,25 +6,29 @@
     </head>
     <body>
         <div class = "container">
-        <h5> <a href="/">Home</a></h5>
+            <h5><a href="/">Home</a></h5>
 
             {% if brands is not empty %}
+            <ul>
                 {% for element in brands %}
-                <p>
+                <li>
                     <a href="/brand/{{ element.getId() }}">{{ element.getBrandName() }}</a>
-                </p>
+                </li>
                 {% endfor %}
+            </ul>
+            {% else %}
+            <p>There are no brands listed!</p>
             {% endif %}
 
             <form action = "/brands" method = "post">
                 <label for = "brand_name"> Enter a brand Name </label>
                 <input id = "brand_name" name = "brand_name" type = "text">
-                <button type = "submit">Make a new brand</button>
+                <button type = "submit">New Brand</button>
             </form>
 
-            <form action = "/brandsDeleteall" method = "post">
+            <form action = "/brands/delete" method = "post">
                 <button type = "submit">Delete All</button>
+            </form>
         </div>
-        </p>
     </body>
 </html>

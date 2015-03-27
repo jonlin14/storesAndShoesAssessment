@@ -60,7 +60,7 @@
             return $app['twig']->render('brands.html.twig', array ('brands' => Brand::getAll()));
         });
 
-        $app->post('/brandsDeleteall', function() use ($app) {
+        $app->post('/brands/delete', function() use ($app) {
             Brand::deleteAll();
             return $app['twig']->render('brands.html.twig', array('brands' => Brand::deleteAll()));
         });

@@ -6,25 +6,28 @@
     </head>
     <body>
         <div class = "container">
-            <h3><a href="/">Home</a></h3>
+            <h5><a href="/">Home</a></h5>
+
             {% if stores is not empty %}
             <ul>
                 {% for element in stores %}
-                <li><a href="stores/{{ element.getId() }}"> {{ element.getName() }} </a> </li>
+                <li>
+                    <a href="stores/{{ element.getId() }}"> {{ element.getName() }}</a>
+                </li>
                 {% endfor %}
             </ul>
             {% else %}
-            <p>This brand is not sold anywhere!</p>
+            <p>There are no stores listed</p>
             {% endif %}
 
             <form action = "/stores" method = "post">
                 <label for = "new_store">Input a new store </label>
                 <input id = "new_store" name = "new_store" type = "text">
-                <button type = "submit">Go!</button>
+                <button type = "submit">New Store</button>
             </form>
 
             <form action = "/stores/delete" method = "post">
-                <button type = "submit">Delete all Stores</button>
+                <button type = "submit">Delete All</button>
             </form>
         </div>
     </body>

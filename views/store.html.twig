@@ -6,17 +6,20 @@
     </head>
     <body>
         <div class = "container">
-        
             <h3><a href="/">Home</a> > <a href="/stores">Stores</a></h3>
+            <h2> {{store.getName()}} </h2>
+
             {% if brands is not empty %}
                 <p>
                     These are the brands that this store sells
                 </p>
-                {% for element in brands %}
-                <p>
-                    {{ element.getBrandName() }}
-                </p>
-                {% endfor %}
+                <ul>
+                    {% for element in brands %}
+                    <li>
+                        {{ element.getBrandName() }}
+                    </li>
+                    {% endfor %}
+                </ul>
             {% else %}
                 <p> This store currently sells no brands </p>
             {% endif %}
