@@ -103,6 +103,22 @@
             $this->assertEquals([], Brand::getAll());
         }
 
+        function test_find()
+        {
+            $new_name = "Puma";
+            $new_brand = new Brand($new_name);
+            $new_brand->save();
+
+            $new_name1 = "Nike";
+            $new_brand1 = new Brand($new_name1);
+            $new_brand1->save();
+
+            $search_id = $new_brand1->getId();
+            $result = Brand::find($search_id);
+
+            $this->assertEquals($new_brand1, $result);
+        }
+
     }
 
 

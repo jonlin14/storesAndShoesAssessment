@@ -59,6 +59,21 @@
             $GLOBALS['DB']->exec("DELETE FROM brands *;");
         }
 
+        static function find($search_id)
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM brands WHERE id = {$search_id};");
+            $query_fetched = $query->fetchAll(PDO::FETCH_ASSOC);
+            $found_brand = null;
+
+            foreach ($query_fetched as $element)
+            {
+                $new_brand_name = $element['name'];
+                $new_id = $element['id'];
+                $found_brand = new Brand($new_brand_name, $new_id);
+            }
+            return $found_brand;
+        }
+
 
     }
 
