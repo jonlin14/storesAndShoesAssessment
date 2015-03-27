@@ -106,6 +106,19 @@
 
             $this->assertEquals([], $result);
         }
+
+        function test_update()
+        {
+            $name = "K-Mart";
+            $new_store = new Store($name);
+            $new_name = "Target";
+
+            $new_store->update($new_name);
+            $result = $new_store->getName();
+
+            $this->assertEquals("Target", $result);
+
+        }
     }
 
 
