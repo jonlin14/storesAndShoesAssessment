@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Stores.html.twig</title>
+    </head>
+    <body>
+            {% if stores is not empty %}
+                {% for element in stores %}
+                <p> {{ element.getName() }} </p>
+                {% endfor %}
+            {% endif %}
+
+            <form action = "/stores" method = "post">
+                <label for = "new_store">Input a new store </label>
+                <input id = "new_store" name = "new_store" type = "text">
+                <button type = "submit">Go!</button>
+            </form>
+
+            <form action = "/stores/delete" method = "post">
+                <button type = "submit">Delete all Stores</button>
+            </form>
+    </body>
+</html>
