@@ -206,7 +206,7 @@
             $this->assertEquals([$new_brand, $new_brand1], $result);
         }
 
-        function test_singleDeleteBrand()
+        function test_singleDeleteBrandJoinTable()
         {
             $store_name = "Target";
             $new_store = new Store($store_name);
@@ -214,7 +214,7 @@
 
             $brand_name = "Puma";
             $new_brand = new Brand($brand_name);
-            $new_brand->Save();
+            $new_brand->save();
 
             $new_store->addBrand($new_brand);
             $new_brand->delete();
@@ -223,6 +223,8 @@
 
             $this->assertEquals([], $result);
         }
+
+
     }
 
 

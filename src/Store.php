@@ -95,7 +95,7 @@
 
         function getBrands()
         {
-            $query = $GLOBALS['DB']->query("SELECT brands.* FROM brands JOIN stores_brands ON (brands.id = stores_brands.brands_id) JOIN stores ON (stores_brands.stores_id = stores.id);");
+            $query = $GLOBALS['DB']->query("SELECT brands.* FROM brands JOIN stores_brands ON (brands.id = stores_brands.brands_id) JOIN stores ON (stores_brands.stores_id = stores.id) WHERE stores.id = {$this->getId()};");
             $query_fetched = $query->fetchAll(PDO::FETCH_ASSOC);
             $return_brands = array ();
 
