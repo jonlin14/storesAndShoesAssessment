@@ -1,12 +1,20 @@
 <html>
     <head>
-        <title>Stores.html.twig</title>
+        <link rel="stylesheet" href="normalize.css" media="all">
+        <link rel="stylesheet" href="skeleton.css" media="all">
+        <title>Stores</title>
     </head>
     <body>
+        <div class = "container">
+            <h3><a href="/">Home</a></h3>
             {% if stores is not empty %}
+            <ul>
                 {% for element in stores %}
-                <p> <a href="stores/{{ element.getId() }}"> {{ element.getName() }} </a> </p>
+                <li><a href="stores/{{ element.getId() }}"> {{ element.getName() }} </a> </li>
                 {% endfor %}
+            </ul>
+            {% else %}
+            <p>This brand is not sold anywhere!</p>
             {% endif %}
 
             <form action = "/stores" method = "post">
@@ -18,5 +26,6 @@
             <form action = "/stores/delete" method = "post">
                 <button type = "submit">Delete all Stores</button>
             </form>
+        </div>
     </body>
 </html>

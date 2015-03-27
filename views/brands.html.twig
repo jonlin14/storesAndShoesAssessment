@@ -1,8 +1,11 @@
 <html>
     <head>
-        <title>Brands.html.twig</title>
+        <link rel="stylesheet" href="normalize.css" media="all">
+        <link rel="stylesheet" href="skeleton.css" media="all">
+        <title>Brands</title>
     </head>
     <body>
+        <div class = "container">
         <h5> <a href="/">Home</a></h5>
 
             {% if brands is not empty %}
@@ -21,6 +24,7 @@
 
             <form action = "/brandsDeleteall" method = "post">
                 <button type = "submit">Delete All</button>
+        </div>
         </p>
     </body>
 </html>

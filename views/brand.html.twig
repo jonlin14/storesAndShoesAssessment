@@ -1,18 +1,25 @@
 <html>
     <head>
-        <title>Brand.html.twig</title>
+        <link rel="stylesheet" href="normalize.css" media="all">
+        <link rel="stylesheet" href="skeleton.css" media="all">
+        <title>Brand</title>
     </head>
     <body>
+        <div class = "container">
         <h3> {{ brand.getBrandName() }}</h3>
         <h3><a href="/">Home ></a><a href="/brands">Brands</a></h3>
 
         {% if stores is not empty %}
         <p>These are the stores that sell this brand</p>
+        <ul>
             {% for element in stores %}
-            <p>
+            <li>
                 {{ element.getName() }}
-            </p>
+            </li>>
             {% endfor %}
+        </ul>
+        {% else %}
+        <p> No stores sell this brand! </p>
         {% endif %}
         <form action = "addStores" method = "post">
             <input id = "brand_id" name = "brand_id" type = "hidden" value = "{{ brand.getId() }}" >
@@ -25,13 +32,10 @@
             <button type = "submit">Add a store</button>
         </form>
 
-
-
-
-
         <form action = "/brand/{{ brand.getId() }}" method = "post">
             <input name = "_method" type = "hidden" value = "delete">
             <button type = "submit">Delete</button>
         </form>
+        </div>
     </body>
 </html>

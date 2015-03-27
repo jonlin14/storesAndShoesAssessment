@@ -1,13 +1,41 @@
 <html>
     <head>
-        <title>Store.html.twig</title>
+        <link rel="stylesheet" href="normalize.css" media="all">
+        <link rel="stylesheet" href="skeleton.css" media="all">
+        <title>Stores</title>
     </head>
     <body>
-        <p>
+        <div class = "container">
+        
+            <h3><a href="/">Home</a> > <a href="/stores">Stores</a></h3>
+            {% if brands is not empty %}
+                <p>
+                    These are the brands that this store sells
+                </p>
+                {% for element in brands %}
+                <p>
+                    {{ element.getBrandName() }}
+                </p>
+                {% endfor %}
+            {% else %}
+                <p> This store currently sells no brands </p>
+            {% endif %}
+            <form action = "/addBrands" method = "post">
+                <input id = 'store_id' name = 'store_id' type = 'hidden' value = '{{ store.getId() }}'>
+                <label for 'brand_id'>Select a brand to add it to the store</label>
+                <select id = "brand_id" name = "brand_id" type = "text">
+                    {% for element in all_brands %}
+                        <option value = "{{ element.getId() }}"> {{ element.getBrandName() }} </option>
+                    {% endfor %}
+                </select>
+                <button type = "submit">Add a brand</button>
+            </form>
+
+
             <form action = "/updateStore/{{ store.getId() }}" method = "post">
                 <input name = "_method" type = "hidden" value = "patch">
 
-                <label for "update_store_name">Enter a new store name</label>
+                <label for "update_store_name">To update the store name, input a new name</label>
                 <input id = "update_store_name" name = "update_store_name" type = "text">
                 <button type = "submit">Update Name</button>
             </form>
@@ -17,5 +45,6 @@
                 <button type = "submit">Delete this store</button>
             </form>
         </p>
+    </div>
     </body>
 </html>
