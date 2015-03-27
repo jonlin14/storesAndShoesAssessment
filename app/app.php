@@ -61,6 +61,11 @@
             return $app['twig']->render('brands.html.twig', array ('brands' => Brand::getAll()));
         });
 
+        $app->post('/brandsDeleteall', function() use ($app) {
+            Brand::deleteAll();
+            return $app['twig']->render('brands.html.twig', array('brands' => Brand::deleteAll()));
+        });
+
 
 
 

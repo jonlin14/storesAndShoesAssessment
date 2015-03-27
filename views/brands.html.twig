@@ -8,7 +8,7 @@
             {% if brands is not empty %}
                 {% for element in brands %}
                 <p>
-                    {{ element.getBrandName() }}
+                    <a href="/brand/{{ element.getId() }}">{{ element.getBrandName() }}</a>
                 </p>
                 {% endfor %}
             {% endif %}
@@ -16,7 +16,11 @@
             <form action = "/brands" method = "post">
                 <label for = "brand_name"> Enter a brand Name </label>
                 <input id = "brand_name" name = "brand_name" type = "text">
+                <button type = "submit">Make a new brand</button>
             </form>
+
+            <form action = "/brandsDeleteall" method = "post">
+                <button type = "submit">Delete All</button>
         </p>
     </body>
 </html>
