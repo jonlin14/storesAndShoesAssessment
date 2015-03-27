@@ -15,7 +15,7 @@
         protected function tearDown()
         {
             Store::deleteAll();
-        }
+        }$
 
         function test_getId()
         {
@@ -165,6 +165,43 @@
 
             $this->assertEquals($new_store1, $result);
 
+        }
+
+        function test_addBrand()
+        {
+            $store_name = "K-Mart";
+            $new_store = new Store ($store_name);
+            $new_store->save();
+
+            $brand_name = "Puma";
+            $new_brand = new Brand($brand_name);
+            $new_brand->save();
+
+            $new_store->addBrand($new_brand);
+            $result = $new_store->getBrands();
+
+            $this->assertEquals($new_brand, $result);
+        }
+
+        function test_getBrands()
+        {
+            $store_name = "Target";
+            $new_store = new Store ($store_name);
+            $new_store->save();
+
+            $brand_name = "Puma";
+            $new_brand = new Brand($brand_name);
+            $new_brand->save();
+
+            $brand_name1 = "Nike";
+            $new_brand1 = new Brand($brand_name1);
+            $new_brand1->save();
+
+            $new_store->addBrand($new_brand);
+            $new_store->addBrand($new_brand1);
+            $result = $new_store->getBrands();
+
+            $this->assertEquals([$new_brand, $new_brand1], $result);
         }
     }
 
