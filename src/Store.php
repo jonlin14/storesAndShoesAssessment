@@ -26,6 +26,12 @@
             return $this->brand_name;
         }
 
+        function setBrandName($new_brand_name)
+        {
+            $this->brand_name = $new_brand_name;
+        }
+
+        
     }
 
 

@@ -45,6 +45,19 @@
 
         }
 
+        function test_setBrandName()
+        {
+            $name = "K-Mart";
+            $new_store = new Store($name);
+            $new_name = "Macys";
+
+            $new_store->setBrandName($new_name);
+            $result = $new_store->getBrandName();
+
+            $this->assertEquals("Macys", $result);
+
+        }
+
 
     }
 
