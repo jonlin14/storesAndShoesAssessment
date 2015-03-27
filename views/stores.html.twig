@@ -5,7 +5,7 @@
     <body>
             {% if stores is not empty %}
                 {% for element in stores %}
-                <p> {{ element.getName() }} </p>
+                <p> <a href="stores/{{ element.getId() }}"> {{ element.getName() }} </a> </p>
                 {% endfor %}
             {% endif %}
 
