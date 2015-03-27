@@ -44,6 +44,11 @@
             $this->setName($new_name);
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getID()};");
+        }
+
 
         static function getAll()
         {
@@ -66,6 +71,20 @@
             $GLOBALS['DB']->exec("DELETE FROM stores *;");
         }
 
+        static function find($search_id)
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM stores where id = {$search_id};");
+            $query_fetched = $query->fetch(PDO::FETCH_ASSOC);
+            $found_store = null;
+
+            foreach ($query_fetched as $element)
+            {
+                $new_name = $query_fetched['name'];
+                $new_id = $query_fetched['id'];
+                $found_store = new Store($new_name, $new_id);
+            }
+            return $found_store;
+        }
 
 
     }

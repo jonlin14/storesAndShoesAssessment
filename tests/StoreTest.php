@@ -132,6 +132,40 @@
 
             $this->assertEquals("Macys", $result[0]->getName());
         }
+
+        function test_singleDelete()
+        {
+            $name = "K-Mart";
+            $new_store = new Store($name);
+            $new_store->save();
+
+            $name1 = "Macys";
+            $new_store1 = new Store($name1);
+            $new_store1->save();
+
+            $new_store->delete();
+
+            $result = Store::getAll();
+
+            $this->assertEquals([$new_store1], $result);
+        }
+
+        function test_find()
+        {
+            $name = "K-Mart";
+            $new_store = new Store ($name);
+            $new_store->save();
+
+            $name1 = "Macys";
+            $new_store1 = new Store ($name1);
+            $new_store1->save();
+
+            $search_id = $new_store1->getId();
+            $result = Store::find($search_id);
+
+            $this->assertEquals($new_store1, $result);
+
+        }
     }
 
 
