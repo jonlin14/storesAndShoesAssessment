@@ -2,12 +2,12 @@
 
     class Store {
 
-        private $brand_name;
+        private $name;
         private $id;
 
-        function __construct($brand_name, $id = null)
+        function __construct($name, $id = null)
         {
-            $this->brand_name  = $brand_name;
+            $this->name = $name;
             $this->id = $id;
         }
 
@@ -21,17 +21,46 @@
             $this->id = $new_id;
         }
 
-        function getBrandName()
+        function getName()
         {
-            return $this->brand_name;
+            return $this->name;
         }
 
-        function setBrandName($new_brand_name)
+        function setName($new_name)
         {
-            $this->brand_name = $new_brand_name;
+            $this->name = $new_name;
         }
 
-        
+        function save()
+        {
+            $statement = $GLOBALS['DB']->query("INSERT INTO stores (name) VALUES ('{$this->getName()}') RETURNING id;");
+            $query = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->setId($query['id']);
+        }
+
+        static function getAll()
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM stores;");
+            $stores = $query->fetchAll(PDO::FETCH_ASSOC);
+            $return_stores = array();
+
+            foreach($stores as $element)
+            {
+                $new_name = $element['name'];
+                $new_id = $element['id'];
+                $new_store = new Store($new_name, $new_id);
+                array_push ($return_stores, $new_store);
+            }
+            return $return_stores;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores *;");
+        }
+
+
+
     }
 
 
