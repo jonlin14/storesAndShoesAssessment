@@ -67,8 +67,16 @@
         });
 
         $app->get('/brand/{id}', function($id) use ($app) {
-            $brand = Brand::find();
+            $brand = Brand::find($id);
             return $app['twig']->render('brand.html.twig', array('brand' => $brand));
+        });
+
+        $app->delete('/brand/{id}', function($id) use ($app) {
+            $brand = Brand::find($id);
+            $brand->delete();
+            return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+
+
         });
 
 

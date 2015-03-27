@@ -1,8 +1,11 @@
 <html>
     <head>
-        <title></title>
+        <title>Brand.html.twig</title>
     </head>
     <body>
-
+        <form action = "/brand/{{ brand.getId() }}" method = "post">
+            <input name = "_method" type = "hidden" value = "delete">
+            <button type = "submit">Delete</button>
+        </form>
     </body>
 </html>
