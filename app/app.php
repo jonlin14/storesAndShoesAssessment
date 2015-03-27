@@ -68,7 +68,13 @@
 
         $app->get('/brand/{id}', function($id) use ($app) {
             $brand = Brand::find($id);
-            return $app['twig']->render('brand.html.twig', array('brand' => $brand));
+            return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'stores' => Store::getAll(), 'stores' => $brand->getStores(), 'all_stores' =>Store::getAll()));
+        });
+        $app->post('/brand/addStores', function() use ($app) {
+            $brand = Brand::find($_POST['brand_id']);
+            $store = Store::find($_POST['store_id']);
+            $brand->addStore($store);
+            return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brands' => Brand::getAll(), 'stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
         });
 
         $app->delete('/brand/{id}', function($id) use ($app) {
