@@ -4,7 +4,18 @@
     </head>
     <body>
         <p>
-            Store.html.twig
+            <form action = "/updateStore/{{ store.getId() }}" method = "post">
+                <input name = "_method" type = "hidden" value = "patch">
+
+                <label for "update_store_name">Enter a new store name</label>
+                <input id = "update_store_name" name = "update_store_name" type = "text">
+                <button type = "submit">Update Name</button>
+            </form>
+
+            <form action = "/deleteStore/{{ store.getId() }}" method = "post">
+                <input name = "_method" type = "hidden" value = "delete">
+                <button type = "submit">Delete this store</button>
+            </form>
         </p>
     </body>
 </html>
