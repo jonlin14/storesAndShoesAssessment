@@ -38,6 +38,11 @@
             $this->setId($query_fetched['id']);
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE id = {$this->getId()};");
+        }
         static function getAll()
         {
             $query = $GLOBALS['DB']->query("SELECT * FROM brands;");
@@ -57,7 +62,10 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM brands *;");
+            $GLOBALS['DB']->exec("DELETE FROM stores_brands *;");
         }
+
+
 
         static function find($search_id)
         {

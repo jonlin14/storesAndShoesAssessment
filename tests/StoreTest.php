@@ -205,6 +205,24 @@
 
             $this->assertEquals([$new_brand, $new_brand1], $result);
         }
+
+        function test_singleDeleteBrand()
+        {
+            $store_name = "Target";
+            $new_store = new Store($store_name);
+            $new_store->save();
+
+            $brand_name = "Puma";
+            $new_brand = new Brand($brand_name);
+            $new_brand->Save();
+
+            $new_store->addBrand($new_brand);
+            $new_brand->delete();
+
+            $result = $new_store->getBrands();
+
+            $this->assertEquals([], $result);
+        }
     }
 
 
