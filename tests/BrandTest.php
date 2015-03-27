@@ -10,6 +10,12 @@
 
     class BrandTest extends PHPUnit_Framework_TestCase
     {
+
+        protected function TearDown()
+        {
+            Brand::deleteAll();
+        }
+
         function test_getId()
         {
             $new_name = "Nike";
@@ -80,6 +86,21 @@
             $result = Brand::getAll();
 
             $this->assertEquals([$new_brand, $new_brand1], $result);
+        }
+
+        function test_deleteAll()
+        {
+            $new_name = "Puma";
+            $new_brand = new Brand($new_name);
+            $new_brand->save();
+
+            $new_name1 = "Nike";
+            $new_brand1 = new Brand($new_name1);
+            $new_brand1->save();
+
+            Brand::deleteAll();
+
+            $this->assertEquals([], Brand::getAll());
         }
 
     }
