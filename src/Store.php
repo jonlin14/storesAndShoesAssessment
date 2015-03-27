@@ -69,6 +69,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stores *;");
+            $GLOBALS['DB']->exec("DELETE FROM stores_brands *;");
         }
 
         static function find($search_id)
@@ -84,6 +85,27 @@
                 $found_store = new Store($new_name, $new_id);
             }
             return $found_store;
+        }
+
+        function addBrand($add_brand)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO stores_brands (stores_id, brands_id) VALUES ({$this->getId()}, {$add_brand->getId()});");
+        }
+
+        function getBrands()
+        {
+            $query = $GLOBALS['DB']->query("SELECT brands.* FROM brands JOIN stores_brands ON (brands.id = stores_brands.brands_id) JOIN stores ON (stores_brands.stores_id = stores.id);");
+            $query_fetched = $query->fetchAll(PDO::FETCH_ASSOC);
+            $return_brands = array ();
+
+            foreach ($query_fetched as $element)
+            {
+                $brand_name = $element['name'];
+                $brand_id = $element['id'];
+                $brand = new Brand($brand_name, $brand_id);
+                array_push($return_brands, $brand);
+            }
+            return $return_brands;
         }
 
 
