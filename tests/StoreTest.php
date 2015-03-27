@@ -11,14 +11,27 @@
     {
         function test_getId()
         {
-            $new_id = 2;
-            $new_name = "Macys";
-            $new_store = New Store ($new_name, $new_id);
+            $id = 2;
+            $name = "Macys";
+            $new_store = New Store ($name, $id);
 
             $result = $new_store->getId();
 
             $this->assertEquals(2, $result);
 
+        }
+
+        function test_setId()
+        {
+            $id = 2;
+            $name = "Macys";
+            $new_store = new Store($name,$id);
+            $new_id = 3;
+            $new_store->setId($new_id);
+
+            $result = $new_store->getId();
+
+            $this->assertEquals(3, $result);
         }
 
 
