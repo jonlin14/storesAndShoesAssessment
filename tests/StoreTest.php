@@ -119,6 +119,19 @@
             $this->assertEquals("Target", $result);
 
         }
+
+        function test_updateDatabase()
+        {
+            $name = "K-Mart";
+            $new_store = new Store($name);
+            $new_name = "Macys";
+            $new_store->save();
+
+            $new_store->update($new_name);
+            $result = Store::getAll();
+
+            $this->assertEquals("Macys", $result[0]->getName());
+        }
     }
 
 
